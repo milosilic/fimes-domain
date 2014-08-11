@@ -1,6 +1,7 @@
 package rs.fimes.domain.nab;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.*;
 
@@ -15,39 +16,30 @@ import java.util.List;
  */
 @Entity
 @Table(name="nab_partija_nabavke")
-@NamedQuery(name="NabPartijaNabavke.findAll", query="SELECT n FROM NabPartijaNabavke n")
 public class NabPartijaNabavke extends FimesDomain  implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name="id_partija_nabavke")
 	private Integer idPartijaNabavke;
 
-	@Column(name="opis_predmeta_nabavke")
 	private String opisPredmetaNabavke;
 
-	//bi-directional many-to-one association to NabOglasPartija
-	@OneToMany(mappedBy="nabPartijaNabavke")
-	private List<NabOglasPartija> nabOglasPartijas;
-
-	//bi-directional many-to-one association to NabJavnaNabavka
-	@ManyToOne
-	@JoinColumn(name="id_javna_nabavka")
 	private NabJavnaNabavka nabJavnaNabavka;
 
-	//bi-directional many-to-one association to XnabJrn
-	@ManyToOne
-	@JoinColumn(name="id_jrn")
 	private XnabJrn xnabJrn;
 
-	//bi-directional many-to-one association to XnabPredmetNabavke
-	@ManyToOne
-	@JoinColumn(name="id_predmet_nabavke")
 	private XnabPredmetNabavke xnabPredmetNabavke;
+	
+	private BigDecimal procenjenaVrednostBezPdv;
+	private BigDecimal procenjenaVrednostSaPdv;
+	private String napomena;
 
 	public NabPartijaNabavke() {
 	}
 
+    @Id
+    @Column(name="id_partija_nabavke", unique=true, nullable=false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_nab_partija_nabavke")
+    @SequenceGenerator(name = "seq_nab_partija_nabavke", sequenceName = "seq_nab_partija_nabavke", initialValue = 1, allocationSize = 1)
 	public Integer getIdPartijaNabavke() {
 		return this.idPartijaNabavke;
 	}
@@ -56,6 +48,7 @@ public class NabPartijaNabavke extends FimesDomain  implements Serializable {
 		this.idPartijaNabavke = idPartijaNabavke;
 	}
 
+    @Column(name="opis_predmeta_nabavke", nullable=false, length=1024)
 	public String getOpisPredmetaNabavke() {
 		return this.opisPredmetaNabavke;
 	}
@@ -64,28 +57,8 @@ public class NabPartijaNabavke extends FimesDomain  implements Serializable {
 		this.opisPredmetaNabavke = opisPredmetaNabavke;
 	}
 
-	public List<NabOglasPartija> getNabOglasPartijas() {
-		return this.nabOglasPartijas;
-	}
-
-	public void setNabOglasPartijas(List<NabOglasPartija> nabOglasPartijas) {
-		this.nabOglasPartijas = nabOglasPartijas;
-	}
-
-	public NabOglasPartija addNabOglasPartija(NabOglasPartija nabOglasPartija) {
-		getNabOglasPartijas().add(nabOglasPartija);
-		nabOglasPartija.setNabPartijaNabavke(this);
-
-		return nabOglasPartija;
-	}
-
-	public NabOglasPartija removeNabOglasPartija(NabOglasPartija nabOglasPartija) {
-		getNabOglasPartijas().remove(nabOglasPartija);
-		nabOglasPartija.setNabPartijaNabavke(null);
-
-		return nabOglasPartija;
-	}
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_javna_nabavka", nullable = false)
 	public NabJavnaNabavka getNabJavnaNabavka() {
 		return this.nabJavnaNabavka;
 	}
@@ -94,7 +67,13 @@ public class NabPartijaNabavke extends FimesDomain  implements Serializable {
 		this.nabJavnaNabavka = nabJavnaNabavka;
 	}
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_jrn", nullable = false)
 	public XnabJrn getXnabJrn() {
+	    if (null == this.xnabJrn) {
+	        this.xnabJrn = new XnabJrn();
+	    }
+        this.xnabJrn.setIdJrn(5);
 		return this.xnabJrn;
 	}
 
@@ -102,12 +81,46 @@ public class NabPartijaNabavke extends FimesDomain  implements Serializable {
 		this.xnabJrn = xnabJrn;
 	}
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_predmet_nabavke", nullable = false)
 	public XnabPredmetNabavke getXnabPredmetNabavke() {
+        if ( null == this.xnabPredmetNabavke){
+            this.xnabPredmetNabavke = new XnabPredmetNabavke();
+        }
+        this.xnabPredmetNabavke.setIdPredmetNabavke(4);
 		return this.xnabPredmetNabavke;
 	}
 
 	public void setXnabPredmetNabavke(XnabPredmetNabavke xnabPredmetNabavke) {
 		this.xnabPredmetNabavke = xnabPredmetNabavke;
 	}
+	
+    @Column(name="procenjena_vrednost_bez_pdv", precision=15, nullable=false)
+    public BigDecimal getProcenjenaVrednostBezPdv() {
+        return procenjenaVrednostBezPdv;
+    }
 
+    public void setProcenjenaVrednostBezPdv(BigDecimal procenjenaVrednostBezPdv) {
+        this.procenjenaVrednostBezPdv = procenjenaVrednostBezPdv;
+    }
+
+    @Column(name="procenjena_vrednost_sa_pdv", precision=15, nullable=false)
+    public BigDecimal getProcenjenaVrednostSaPdv() {
+        return procenjenaVrednostSaPdv;
+    }
+
+    public void setProcenjenaVrednostSaPdv(BigDecimal procenjenaVrednostSaPdv) {
+        this.procenjenaVrednostSaPdv = procenjenaVrednostSaPdv;
+    }
+
+    @Column(name="napomena", nullable=true, length=1024)
+    public String getNapomena() {
+        return napomena;
+    }
+
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
+    }
+
+	
 }
