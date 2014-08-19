@@ -75,7 +75,7 @@ public class NabNabavkaKontoPartija extends FimesDomain  implements Serializable
     public void setIzvorFinansiranja(XnabIzvorFinansiranja izvorFinansiranja) {
         this.izvorFinansiranja = izvorFinansiranja;
     }
-    @Column(name="vrednost_sa_pdv", precision=15, nullable=false)
+    @Column(name="vrednost_bez_pdv", precision=15, nullable=false)
     public BigDecimal getVrednostBezPdv() {
         return vrednostBezPdv;
     }
