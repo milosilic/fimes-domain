@@ -1,5 +1,14 @@
-src/*
-!src/main/java/rs/fimes/domain/nab
+src/main/java/rs/fimes/beans/
+src/main/java/rs/fimes/data/
+src/main/java/rs/fimes/domain/ac/
+src/main/java/rs/fimes/domain/core/
+src/main/java/rs/fimes/domain/org/
+src/main/java/rs/fimes/domain/osb/
+src/main/java/rs/fimes/domain/sff/
+src/main/java/rs/fimes/domain/sfs/
+src/main/java/rs/fimes/domain/sys/
+src/main/resources/
+
 
 target/
 .svn
