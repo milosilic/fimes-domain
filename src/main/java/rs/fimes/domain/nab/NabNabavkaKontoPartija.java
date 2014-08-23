@@ -29,6 +29,7 @@ public class NabNabavkaKontoPartija extends FimesDomain  implements Serializable
     private XnabIzvorFinansiranja izvorFinansiranja;
     private BigDecimal vrednostBezPdv;
     private BigDecimal vrednostSaPdv;
+    private String napomena;
     
     @Id
     @Column(name="id_nabavka_konto_partija", nullable=false, unique=true)
@@ -88,6 +89,13 @@ public class NabNabavkaKontoPartija extends FimesDomain  implements Serializable
     }
     public void setVrednostSaPdv(BigDecimal vrednostSaPdv) {
         this.vrednostSaPdv = vrednostSaPdv;
+    }
+    @Column(name="napomena", length=1024, nullable=true)    
+    public String getNapomena() {
+        return napomena;
+    }
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
     }
     
     
