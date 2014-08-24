@@ -50,7 +50,7 @@ public class NabNabavkaJrn extends FimesDomain  implements Serializable {
     public XnabJrn getNabJrn() {
         return nabJrn;
     }
-    public void setJrn(XnabJrn nabJrn) {
+    public void setNabJrn(XnabJrn nabJrn) {
         this.nabJrn = nabJrn;
     }
 
