@@ -1,7 +1,6 @@
 package rs.fimes.domain.nab;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -48,7 +47,7 @@ public class NabNabavkaJrn extends FimesDomain  implements Serializable {
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_jrn", nullable = false)       
-    public XnabJrn getNabKonto() {
+    public XnabJrn getNabJrn() {
         return nabJrn;
     }
     public void setJrn(XnabJrn nabJrn) {
