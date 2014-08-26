@@ -97,6 +97,16 @@ public class NabNabavkaKontoPartija extends FimesDomain  implements Serializable
     public void setNapomena(String napomena) {
         this.napomena = napomena;
     }
+    @Override
+    public String toString() {
+        return "NabNabavkaKontoPartija [idNabavkaKontoPartija="
+                + idNabavkaKontoPartija + ", nabJavnaNabavka="
+                + nabJavnaNabavka + ", nabKonto=" + nabKonto
+                + ", partijaNabavke=" + partijaNabavke + ", izvorFinansiranja="
+                + izvorFinansiranja + ", vrednostBezPdv=" + vrednostBezPdv
+                + ", vrednostSaPdv=" + vrednostSaPdv + ", napomena=" + napomena
+                + "]";
+    }
     
     
     
