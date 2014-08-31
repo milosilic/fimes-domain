@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import rs.fimes.domain.FimesDomain;
+import rs.fimes.domain.core.PpPoslovniPartner;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -24,6 +25,7 @@ public class NabUgovor extends FimesDomain  implements Serializable {
     private NabJavnaNabavka nabJavnaNabavka;
     private String interniBroj;
     private Date datumZakljucenja;
+    private PpPoslovniPartner ppPoslovniPartner;
 
     public NabUgovor() {
     }
@@ -70,12 +72,25 @@ public class NabUgovor extends FimesDomain  implements Serializable {
         this.datumZakljucenja = datumZakljucenja;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_poslovni_partner", nullable = true)
+    public PpPoslovniPartner getPpPoslovniPartner() {
+        return ppPoslovniPartner;
+    }
+
+    public void setPpPoslovniPartner(PpPoslovniPartner ppPoslovniPartner) {
+        this.ppPoslovniPartner = ppPoslovniPartner;
+    }
+
     @Override
     public String toString() {
         return "NabUgovor [idUgovor=" + idUgovor + ", nabJavnaNabavka="
                 + nabJavnaNabavka + ", interniBroj=" + interniBroj
-                + ", datumZakljucenja=" + datumZakljucenja + "]";
+                + ", datumZakljucenja=" + datumZakljucenja
+                + ", ppPoslovniPartner=" + ppPoslovniPartner + "]";
     }
+
+
 
     
     
