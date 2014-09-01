@@ -26,6 +26,13 @@ public class NabUgovor extends FimesDomain  implements Serializable {
     private String interniBroj;
     private Date datumZakljucenja;
     private PpPoslovniPartner ppPoslovniPartner;
+    private Integer brojPonuda;
+    private XnabKriterijum kriterijum;
+    private BigDecimal jedinicnaCena;
+    private BigDecimal troskoviPripreme;
+    private BigDecimal ugovorenaVrednostBezPdv;
+    private BigDecimal ugovorenaVrednostSaPdv;
+    
 
     public NabUgovor() {
     }
@@ -82,13 +89,74 @@ public class NabUgovor extends FimesDomain  implements Serializable {
         this.ppPoslovniPartner = ppPoslovniPartner;
     }
 
+    @Column(name="broj_ponuda")
+    public Integer getBrojPonuda() {
+        return brojPonuda;
+    }
+
+    public void setBrojPonuda(Integer brojPonuda) {
+        this.brojPonuda = brojPonuda;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="id_kriterijum")
+    public XnabKriterijum getKriterijum() {
+        return kriterijum;
+    }
+
+    public void setKriterijum(XnabKriterijum kriterijum) {
+        this.kriterijum = kriterijum;
+    }
+
+    @Column(name="jedinicna_cena", length=128)    
+    public BigDecimal getJedinicnaCena() {
+        return jedinicnaCena;
+    }
+
+    public void setJedinicnaCena(BigDecimal jedinicnaCena) {
+        this.jedinicnaCena = jedinicnaCena;
+    }
+
+    @Column(name="troskovi_pripreme")
+    public BigDecimal getTroskoviPripreme() {
+        return troskoviPripreme;
+    }
+
+    public void setTroskoviPripreme(BigDecimal troskoviPripreme) {
+        this.troskoviPripreme = troskoviPripreme;
+    }
+
+    @Column(name="ugovorena_vrednost_bez_pdv")
+    public BigDecimal getUgovorenaVrednostBezPdv() {
+        return ugovorenaVrednostBezPdv;
+    }
+
+    public void setUgovorenaVrednostBezPdv(BigDecimal ugovorenaVrednostBezPdv) {
+        this.ugovorenaVrednostBezPdv = ugovorenaVrednostBezPdv;
+    }
+
+    @Column(name="ugovorena_vrednost_sa_pdv")
+    public BigDecimal getUgovorenaVrednostSaPdv() {
+        return ugovorenaVrednostSaPdv;
+    }
+
+    public void setUgovorenaVrednostSaPdv(BigDecimal ugovorenaVrednostSaPdv) {
+        this.ugovorenaVrednostSaPdv = ugovorenaVrednostSaPdv;
+    }
+
     @Override
     public String toString() {
         return "NabUgovor [idUgovor=" + idUgovor + ", nabJavnaNabavka="
                 + nabJavnaNabavka + ", interniBroj=" + interniBroj
                 + ", datumZakljucenja=" + datumZakljucenja
-                + ", ppPoslovniPartner=" + ppPoslovniPartner + "]";
+                + ", ppPoslovniPartner=" + ppPoslovniPartner + ", brojPonuda="
+                + brojPonuda + ", kriterijum=" + kriterijum
+                + ", jedinicnaCena=" + jedinicnaCena + ", troskoviPripreme="
+                + troskoviPripreme + ", ugovorenaVrednostBezPdv="
+                + ugovorenaVrednostBezPdv + ", ugovorenaVrednostSaPdv="
+                + ugovorenaVrednostSaPdv + "]";
     }
+
 
 
 
