@@ -79,7 +79,6 @@ public class NabJavnaNabavka extends FimesDomain implements Serializable {
 
     @Column(name="opis", nullable = false, length=4096)
     public String getOpis() {
-        if ( null == opis) opis= "opis javne nabavke";
         return opis;
     }
 
@@ -169,7 +168,6 @@ public class NabJavnaNabavka extends FimesDomain implements Serializable {
     }
     @Column(name="opravdanost", nullable=false, length=512)
     public String getOpravdanost() {
-        if(null == opravdanost) opravdanost = "ovo je opravdana nabavka.";
         return opravdanost;
     }
 
@@ -258,7 +256,6 @@ public class NabJavnaNabavka extends FimesDomain implements Serializable {
 
     @Column(name="interni_broj", length=128, nullable=true)
     public String getInterniBroj() {
-        if (null == interniBroj ) interniBroj="2323";
         return interniBroj;
     }
 
