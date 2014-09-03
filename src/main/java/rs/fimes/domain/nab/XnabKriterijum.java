@@ -1,18 +1,29 @@
 package rs.fimes.domain.nab;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import rs.fimes.domain.FimesDomain;
+
 @Entity
 @Table(name="xnab_kriterijum")
-public class XnabKriterijum {
+public class XnabKriterijum extends FimesDomain implements Serializable{
     
+
+    private static final long serialVersionUID = 1L;
     private Integer idKriterijum;
     private String naziv;
     private Boolean fArhivirano;
     
+    
+    
+    public XnabKriterijum() {
+        super();
+    }
     @Id
     @Column(name = "id_kriterijum", unique = true, nullable = false)
     public Integer getIdKriterijum() {
