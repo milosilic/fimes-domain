@@ -32,6 +32,7 @@ public class NabUgovor extends FimesDomain  implements Serializable {
     private BigDecimal troskoviPripreme;
     private BigDecimal ugovorenaVrednostBezPdv;
     private BigDecimal ugovorenaVrednostSaPdv;
+    private Boolean fUgovorIzvrsen;
     
 
     public NabUgovor() {
@@ -142,6 +143,14 @@ public class NabUgovor extends FimesDomain  implements Serializable {
 
     public void setUgovorenaVrednostSaPdv(BigDecimal ugovorenaVrednostSaPdv) {
         this.ugovorenaVrednostSaPdv = ugovorenaVrednostSaPdv;
+    }
+    @Column(name="f_ugovor_izvrsen", nullable=false)
+    public Boolean getfUgovorIzvrsen() {
+        return fUgovorIzvrsen;
+    }
+
+    public void setfUgovorIzvrsen(Boolean fUgovorIzvrsen) {
+        this.fUgovorIzvrsen = fUgovorIzvrsen;
     }
 
     @Override
