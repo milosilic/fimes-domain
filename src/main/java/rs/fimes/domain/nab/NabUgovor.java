@@ -33,6 +33,9 @@ public class NabUgovor extends FimesDomain  implements Serializable {
     private BigDecimal ugovorenaVrednostBezPdv;
     private BigDecimal ugovorenaVrednostSaPdv;
     private Boolean fUgovorIzvrsen;
+    private Date datumFIzvrsenja;
+    private BigDecimal iznosIzvrsenjaBezPdv;
+    private String napomena;
     
 
     public NabUgovor() {
@@ -152,6 +155,35 @@ public class NabUgovor extends FimesDomain  implements Serializable {
     public void setfUgovorIzvrsen(Boolean fUgovorIzvrsen) {
         this.fUgovorIzvrsen = fUgovorIzvrsen;
     }
+    
+    @Temporal(TemporalType.DATE)
+    @Column(name="datum_f_izvrsenja", nullable=false)
+    public Date getDatumFIzvrsenja() {
+        return datumFIzvrsenja;
+    }
+
+    public void setDatumFIzvrsenja(Date datumFIzvrsenja) {
+        this.datumFIzvrsenja = datumFIzvrsenja;
+    }
+
+    @Column(name="iznos_izvrsenja_bez_pdv", nullable=true)
+    public BigDecimal getIznosIzvrsenjaBezPdv() {
+        return iznosIzvrsenjaBezPdv;
+    }
+
+    public void setIznosIzvrsenjaBezPdv(BigDecimal iznosIzvrsenjaBezPdv) {
+        this.iznosIzvrsenjaBezPdv = iznosIzvrsenjaBezPdv;
+    }
+
+    @Column(name="napomena", nullable=true, length=1024)
+    public String getNapomena() {
+        return napomena;
+    }
+
+    public void setNapomena(String napomena) {
+        this.napomena = napomena;
+    }
+
 
     @Override
     public String toString() {
