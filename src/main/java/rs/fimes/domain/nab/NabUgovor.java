@@ -147,7 +147,7 @@ public class NabUgovor extends FimesDomain  implements Serializable {
     public void setUgovorenaVrednostSaPdv(BigDecimal ugovorenaVrednostSaPdv) {
         this.ugovorenaVrednostSaPdv = ugovorenaVrednostSaPdv;
     }
-    @Column(name="f_ugovor_izvrsen", nullable=false)
+    @Column(name="f_ugovor_izvrsen", nullable=true)
     public Boolean getfUgovorIzvrsen() {
         return fUgovorIzvrsen;
     }
@@ -157,7 +157,7 @@ public class NabUgovor extends FimesDomain  implements Serializable {
     }
     
     @Temporal(TemporalType.DATE)
-    @Column(name="datum_f_izvrsenja", nullable=false)
+    @Column(name="datum_f_izvrsenja", nullable=true)
     public Date getDatumFIzvrsenja() {
         return datumFIzvrsenja;
     }
