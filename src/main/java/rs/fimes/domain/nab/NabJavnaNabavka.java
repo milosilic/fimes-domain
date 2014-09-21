@@ -50,6 +50,7 @@ public class NabJavnaNabavka extends FimesDomain implements Serializable {
     private BigDecimal procenaBezPdv;
     private XnabVrstaPredmetaNabavke vrstaPredmetaNabavke;
     private XnabPredmetNabavke predmetNabavke;
+    private Integer rbr;
     
     public NabJavnaNabavka(){
         
@@ -301,7 +302,15 @@ public class NabJavnaNabavka extends FimesDomain implements Serializable {
         this.predmetNabavke = predmetNabavke;
     }
 	
-    
+    @Column(name="rbr", nullable= false)
+    public Integer getRbr() {
+        return rbr;
+    }
+
+    public void setRbr(Integer rbr) {
+        this.rbr = rbr;
+    }
+
     @Override
     public String toString() {
         return "NabJavnaNabavka [idJavnaNabavka=" + idJavnaNabavka
